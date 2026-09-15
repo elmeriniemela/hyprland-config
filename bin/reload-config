@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-rm -f "${XDG_RUNTIME_DIR:-/tmp}/hyprland-effects-disabled"
 hyprctl reload
 sleep 0.5
 errors=$(hyprctl configerrors)

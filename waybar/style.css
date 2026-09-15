@@ -34,8 +34,7 @@ window#waybar {
 #custom-notifications,
 #tray,
 #custom-power,
-#custom-minimized,
-#custom-effects {
+#custom-minimized {
   padding: 0 6px;
 }
 

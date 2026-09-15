@@ -18,7 +18,7 @@ hl.config({
         shadow = { enabled = false },
         blur = { enabled = false },
     },
-    animations = { enabled = true },
+    animations = { enabled = false },
     master = {
         new_status = "slave",
         orientation = "left",
@@ -32,12 +32,3 @@ hl.config({
         enabled = false,
     },
 })
-
-hl.curve("quick", {
-    type = "bezier",
-    points = { { 0.2, 0.8 }, { 0.2, 1.0 } },
-})
-
-hl.animation({ leaf = "global", enabled = true, speed = 12, bezier = "quick" })
-hl.animation({ leaf = "windows", enabled = true, speed = 14, bezier = "quick" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 14, bezier = "quick", style = "fade" })

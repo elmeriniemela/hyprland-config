@@ -39,7 +39,6 @@ ln -s "$HOME/.config/hypr/bin/native-app" "$HOME/.local/bin/hypr-native-app"
 | Ctrl+Super+R | Reload and validate configuration |
 | Ctrl+Super+W | Reapply and validate monitor layout |
 | Ctrl+Shift+Escape | Task manager |
-| Ctrl+Alt+O | Toggle animations |
 | Alt+Tab | Window selector |
 | Print | Region screenshot and annotation |
 | Super+V | Clipboard history |

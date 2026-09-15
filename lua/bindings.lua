@@ -35,7 +35,6 @@ bind("SUPER + u", hl.dsp.focus({ urgent_or_last = true }), "Focus urgent or prev
 bind("CTRL + SUPER + r", helper("reload-config"), "Reload Hyprland")
 bind("CTRL + SUPER + w", helper("monitor-layout"), "Reapply monitor layout")
 bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("xfce4-taskmanager"), "Task manager")
-bind("CTRL + ALT + o", helper("toggle-effects"), "Toggle animations")
 bind("ALT + Tab", helper("window-switcher"), "Window switcher")
 bind("Print", helper("screenshot"), "Capture a screen region")
 bind("SUPER + v", helper("clipboard-menu"), "Clipboard history")
