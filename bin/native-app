@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+new_window=false
+if [[ ${1:-} == --new ]]; then
+    new_window=true
+    shift
+fi
+
+app=${1:-}
+if [[ -z $app ]]; then
+    echo "usage: native-app [--new] APP [ARG ...]" >&2
+    exit 2
+fi
+shift
+
+case "$app" in
+    terminal)
+        pattern='^(Alacritty)$'
+        launch=(alacritty)
+        ;;
+    browser)
+        pattern='^(brave-browser|Brave-browser)$'
+        launch=(brave --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland)
+        ;;
+    files)
+        pattern='^(thunar|Thunar)$'
+        launch=(env GDK_BACKEND=wayland thunar)
+        ;;
+    mail)
+        pattern='^(thunderbird|org.mozilla.Thunderbird)$'
+        launch=(env MOZ_ENABLE_WAYLAND=1 GDK_BACKEND=wayland thunderbird)
+        ;;
+    whatsapp)
+        pattern='^(whatsapp)$|WhatsApp'
+        launch=(brave --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --class=whatsapp --app=https://web.whatsapp.com/)
+        ;;
+    signal)
+        pattern='^(signal|Signal)$'
+        launch=(signal-desktop --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland)
+        ;;
+    slack)
+        pattern='^(slack|Slack)$'
+        if [[ -e $HOME/.config/hypr/use-web-slack ]]; then
+            launch=(brave --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --class=slack --app=https://app.slack.com/client/)
+        else
+            launch=(slack --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland)
+        fi
+        ;;
+    zoom)
+        pattern='^(zoom|Zoom)$'
+        if [[ -e $HOME/.config/hypr/use-web-zoom ]]; then
+            launch=(brave --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --class=zoom --app=https://app.zoom.us/wc/)
+        else
+            launch=(env QT_QPA_PLATFORM=wayland zoom)
+        fi
+        ;;
+    code)
+        pattern='^(code|Code)$|Visual Studio Code'
+        launch=(code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland)
+        ;;
+    *)
+        echo "unknown application: $app" >&2
+        exit 2
+        ;;
+esac
+
+if ! $new_window; then
+    address=$(
+        hyprctl clients -j | jq -r --arg pattern "$pattern" '
+            .[]
+            | select(.xwayland == false)
+            | select(
+                ((.class // "") | test($pattern; "i"))
+                or ((.title // "") | test($pattern; "i"))
+              )
+            | .address
+        ' | head -n 1
+    )
+    if [[ $address =~ ^0x[0-9a-fA-F]+$ ]]; then
+        hyprctl dispatch "hl.dsp.focus({ window = \"address:$address\" })"
+        exit
+    fi
+fi
+
+exec "${launch[@]}" "$@"

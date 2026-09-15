@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+hyprctl reload
+sleep 0.5
+monitors=$(hyprctl monitors -j)
+
+if ! jq -e 'any(.[]; .name == "eDP-1" and .width == 1920 and .height == 1200 and (.scale - 1 | fabs) < 0.01)' <<<"$monitors" >/dev/null; then
+    notify-send -u critical "Monitor layout" "The laptop display does not match its configured mode"
+    exit 1
+fi
+
+if jq -e 'any(.[]; (.description // "") | contains("ASUS MG28U"))' <<<"$monitors" >/dev/null; then
+    if ! jq -e '
+        any(.[];
+            ((.description // "") | contains("ASUS MG28U"))
+            and .width == 3840 and .height == 2160
+            and .x == 0 and .y == 0
+            and (.refreshRate > 29 and .refreshRate < 31)
+            and (.scale - 1 | fabs) < 0.01
+        )
+        and any(.[]; .name == "eDP-1" and .x == 960 and .y == 2160)
+    ' <<<"$monitors" >/dev/null; then
+        notify-send -u critical "Monitor layout" "The ASUS/laptop stacked layout does not match configuration"
+        exit 1
+    fi
+fi
+
+notify-send "Monitor layout" "Display configuration applied"

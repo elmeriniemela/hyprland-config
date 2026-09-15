@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+choice=$(printf '%s\n' Lock Logout Suspend Reboot 'Power off' | rofi -dmenu -i -p Session) || exit 0
+
+confirm() {
+    [[ $(printf '%s\n' No Yes | rofi -dmenu -i -no-custom -p "$1") == Yes ]]
+}
+
+case "$choice" in
+    Lock)
+        pidof hyprlock >/dev/null || hyprlock --config "$HOME/.config/hypr/hyprlock.conf"
+        ;;
+    Logout)
+        if command -v hyprshutdown >/dev/null; then
+            hyprshutdown
+        else
+            hyprctl dispatch 'hl.dsp.exit()'
+        fi
+        ;;
+    Suspend)
+        loginctl lock-session
+        systemctl suspend
+        ;;
+    Reboot)
+        confirm Reboot && systemctl reboot
+        ;;
+    'Power off')
+        confirm 'Power off' && systemctl poweroff
+        ;;
+esac

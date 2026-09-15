@@ -1,0 +1,67 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: Inter, "Droid Sans", sans-serif;
+  font-size: 10px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #000000;
+  color: #aaaaaa;
+}
+
+#workspaces button {
+  min-width: 22px;
+  padding: 0 3px;
+  color: #aaaaaa;
+  background: transparent;
+}
+
+#workspaces button.active,
+#workspaces button:hover {
+  color: #e4e4e4;
+  background: #1c2022;
+}
+
+#workspaces button.urgent {
+  color: #af1d18;
+}
+
+#clock,
+#battery,
+#wireplumber,
+#custom-notifications,
+#tray,
+#custom-power,
+#custom-minimized,
+#custom-effects {
+  padding: 0 6px;
+}
+
+#battery.warning {
+  color: #f0c674;
+}
+
+#battery.critical,
+#custom-notifications.paused {
+  color: #af1d18;
+}
+
+#taskbar button {
+  padding: 0 8px;
+  color: #aaaaaa;
+  background: transparent;
+}
+
+#taskbar button.active,
+#taskbar button:hover {
+  color: #ffffff;
+  background: #1c2022;
+}
+
+tooltip {
+  color: #e4e4e4;
+  background: #050505;
+  border: 1px solid #464646;
+}

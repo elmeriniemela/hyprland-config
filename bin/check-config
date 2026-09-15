@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+config_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+required=(bash jq lua rofi wpctl xdg-user-dir)
+session_required=(
+    Hyprland hyprctl waybar hyprlock hypridle hyprpaper grim slurp satty
+    wl-copy wl-paste cliphist brightnessctl dunstctl notify-send alacritty brave
+    thunar thunderbird signal-desktop slack zoom code nm-applet blueman-applet
+    pavucontrol xfce4-taskmanager
+)
+
+missing=()
+for command in "${required[@]}" "${session_required[@]}"; do
+    command -v "$command" >/dev/null || missing+=("$command")
+done
+if (( ${#missing[@]} )); then
+    printf 'Missing commands: %s\n' "${missing[*]}" >&2
+    exit 1
+fi
+
+luac -p "$config_dir/hyprland.lua" "$config_dir"/lua/*.lua
+for script in "$config_dir"/bin/*; do
+    bash -n "$script"
+done
+jq empty "$config_dir/waybar/config.jsonc"
+if command -v desktop-file-validate >/dev/null; then
+    desktop-file-validate "$config_dir"/applications/*.desktop
+fi
+
+if [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]]; then
+    errors=$(hyprctl configerrors)
+    [[ -z $errors ]] || { printf '%s\n' "$errors" >&2; exit 1; }
+    if pgrep -x Xwayland >/dev/null; then
+        echo "XWayland is running in a native-only session" >&2
+        exit 1
+    fi
+    if hyprctl clients -j | jq -e 'any(.[]; .xwayland == true)' >/dev/null; then
+        echo "At least one XWayland client is running" >&2
+        exit 1
+    fi
+fi
+
+echo "Hyprland configuration checks passed"

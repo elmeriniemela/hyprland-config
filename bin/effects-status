@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -e ${XDG_RUNTIME_DIR:-/tmp}/hyprland-effects-disabled ]]; then
+    jq -cn '{text:"static", tooltip:"Animations disabled", class:"disabled"}'
+else
+    jq -cn '{text:"master", tooltip:"Animations enabled; click to toggle", class:"enabled"}'
+fi

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+exec rofi \
+    -replace \
+    -show window \
+    -kb-accept-entry '!Alt-Tab,Return' \
+    -kb-row-down 'Alt-Tab,Down' \
+    -kb-cancel 'Alt+Escape,Escape'

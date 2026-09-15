@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Slack
+Exec=hypr-native-app --new slack %U
+Terminal=false
+Type=Application
+Icon=slack
+Categories=Network;InstantMessaging;

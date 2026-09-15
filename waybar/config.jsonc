@@ -1,0 +1,95 @@
+[
+  {
+    "name": "top",
+    "layer": "top",
+    "position": "top",
+    "height": 20,
+    "spacing": 4,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["battery", "wireplumber", "custom/notifications", "tray"],
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "1": "➊",
+        "2": "➋",
+        "3": "➌",
+        "4": "➍",
+        "5": "➎",
+        "6": "➏",
+        "7": "➐",
+        "8": "➑",
+        "9": "➒",
+        "default": "{name}"
+      }
+    },
+    "clock": {
+      "format": "{:%H:%M}",
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+        "mode": "month",
+        "weeks-pos": "right",
+        "on-scroll": 1
+      }
+    },
+    "battery": {
+      "format": "{capacity}% {icon}",
+      "format-charging": "{capacity}% ",
+      "format-plugged": "{capacity}% ",
+      "format-icons": ["", "", "", "", ""],
+      "states": { "warning": 20, "critical": 10 }
+    },
+    "wireplumber": {
+      "format": "{volume}% ",
+      "format-muted": "muted ",
+      "on-click": "pavucontrol",
+      "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+    "custom/notifications": {
+      "exec": "$HOME/.config/hypr/bin/notification-status",
+      "return-type": "json",
+      "interval": 2,
+      "on-click": "dunstctl set-paused toggle"
+    },
+    "tray": {
+      "icon-size": 16,
+      "spacing": 5
+    }
+  },
+  {
+    "name": "bottom",
+    "layer": "top",
+    "position": "bottom",
+    "height": 20,
+    "spacing": 4,
+    "modules-left": ["custom/power"],
+    "modules-center": ["wlr/taskbar"],
+    "modules-right": ["custom/minimized", "custom/effects"],
+    "custom/power": {
+      "format": "",
+      "tooltip": true,
+      "tooltip-format": "Session menu",
+      "on-click": "$HOME/.config/hypr/bin/power-menu"
+    },
+    "wlr/taskbar": {
+      "format": "{icon} {title}",
+      "icon-size": 14,
+      "all-outputs": false,
+      "active-first": true,
+      "on-click": "activate",
+      "on-click-middle": "close"
+    },
+    "custom/minimized": {
+      "exec": "$HOME/.config/hypr/bin/minimized-windows status",
+      "return-type": "json",
+      "interval": 2,
+      "on-click": "$HOME/.config/hypr/bin/minimized-windows restore"
+    },
+    "custom/effects": {
+      "exec": "$HOME/.config/hypr/bin/effects-status",
+      "return-type": "json",
+      "interval": 2,
+      "on-click": "$HOME/.config/hypr/bin/toggle-effects"
+    }
+  }
+]

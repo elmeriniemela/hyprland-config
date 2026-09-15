@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=WhatsApp
+Exec=hypr-native-app --new whatsapp
+Terminal=false
+Type=Application
+Icon=whatsapp
+Categories=Network;InstantMessaging;
