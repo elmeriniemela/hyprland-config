@@ -4,21 +4,21 @@ local external = "desc:ASUSTek COMPUTER INC. ASUS MG28U"
 -- below override it for the laptop panel and the normal desk monitor.
 hl.monitor({
     output = "",
-    mode = "preferred",
+    mode = "highres",
     position = "auto",
     scale = 1,
 })
 
 hl.monitor({
     output = external,
-    mode = "3840x2160@29.98",
+    mode = "highres",
     position = "0x0",
     scale = 1,
 })
 
 hl.monitor({
     output = "eDP-1",
-    mode = "1920x1200@60",
+    mode = "highres",
     position = "960x2160",
     scale = 1,
 })

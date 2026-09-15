@@ -56,10 +56,11 @@ Hyprland windows belong to one normal workspace.
 
 ## Displays and applications
 
-The ASUS MG28U is placed above the laptop panel at 3840×2160@29.98. Workspace
-1 and the browser live on the laptop; workspaces 2–9 use the external display,
-with VS Code on 2 and communication applications on 9. With the ASUS display
-absent, Hyprland moves its workspaces to the laptop.
+The ASUS MG28U is placed above the laptop panel. Every display uses its highest
+advertised resolution. Workspace 1 and the browser live on the laptop;
+workspaces 2–9 use the external display, with VS Code on 2 and communication
+applications on 9. With the ASUS display absent, Hyprland moves its workspaces
+to the laptop.
 
 Applications are forced to native Wayland. Create `use-web-slack` or
 `use-web-zoom` in this directory to use the corresponding Brave web client.
