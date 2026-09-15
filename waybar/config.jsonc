@@ -9,39 +9,27 @@
     "modules-center": ["clock"],
     "modules-right": ["battery", "wireplumber", "custom/notifications", "tray"],
     "hyprland/workspaces": {
-      "format": "{icon}",
-      "format-icons": {
-        "1": "➊",
-        "2": "➋",
-        "3": "➌",
-        "4": "➍",
-        "5": "➎",
-        "6": "➏",
-        "7": "➐",
-        "8": "➑",
-        "9": "➒",
-        "default": "{name}"
-      }
+      "format": "{name}"
     },
     "clock": {
       "format": "{:%H:%M}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "on-click": "$HOME/.config/hypr/bin/calendar-popup",
       "calendar": {
         "mode": "month",
-        "weeks-pos": "right",
+        "weeks-pos": "left",
         "on-scroll": 1
       }
     },
     "battery": {
-      "format": "{capacity}% {icon}",
-      "format-charging": "{capacity}% ",
-      "format-plugged": "{capacity}% ",
-      "format-icons": ["", "", "", "", ""],
+      "format": "{capacity}%",
+      "format-charging": "{capacity}% plug",
+      "format-plugged": "{capacity}% plug",
       "states": { "warning": 20, "critical": 10 }
     },
     "wireplumber": {
-      "format": "{volume}% ",
-      "format-muted": "muted ",
+      "format": "{volume}%",
+      "format-muted": "{volume}%M",
       "on-click": "pavucontrol",
       "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
@@ -66,7 +54,7 @@
     "modules-center": ["wlr/taskbar"],
     "modules-right": ["custom/minimized"],
     "custom/power": {
-      "format": "",
+      "format": "",
       "tooltip": true,
       "tooltip-format": "Session menu",
       "on-click": "$HOME/.config/hypr/bin/power-menu"

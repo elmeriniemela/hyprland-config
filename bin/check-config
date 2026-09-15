@@ -2,7 +2,7 @@
 set -euo pipefail
 
 config_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
-required=(bash jq lua rofi wpctl xdg-user-dir)
+required=(bash cal jq lua rofi wpctl xdg-user-dir)
 session_required=(
     Hyprland hyprctl waybar hyprlock hypridle hyprpaper grim slurp satty
     wl-copy wl-paste cliphist brightnessctl dunstctl notify-send alacritty brave

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cal --monday --week --color=never |
+    rofi -dmenu -no-custom -p Calendar -font "monospace 10" >/dev/null || true

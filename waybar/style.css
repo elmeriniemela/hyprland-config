@@ -13,15 +13,22 @@ window#waybar {
 
 #workspaces button {
   min-width: 22px;
-  padding: 0 3px;
+  padding: 0 3px 0 8px;
   color: #aaaaaa;
-  background: transparent;
+  background-color: transparent;
+  background-image: url("icons/square_b.png");
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
 #workspaces button.active,
 #workspaces button:hover {
   color: #e4e4e4;
-  background: #1c2022;
+  background-color: #1c2022;
+}
+
+#workspaces button.active {
+  background-image: url("icons/square_a.png");
 }
 
 #workspaces button.urgent {
@@ -38,6 +45,59 @@ window#waybar {
   padding: 0 6px;
 }
 
+#clock,
+#battery,
+#wireplumber,
+#custom-notifications,
+#custom-power,
+#custom-minimized.occupied {
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
+#clock {
+  padding-left: 24px;
+  background-image: url("icons/clock.png");
+}
+
+#battery {
+  padding-left: 24px;
+  background-image: url("icons/battery-full-charged-symbolic.svg");
+}
+
+#wireplumber {
+  padding-left: 24px;
+  background-image: url("icons/audio-volume-medium-symbolic.svg");
+}
+
+#custom-notifications {
+  min-width: 22px;
+  padding: 0;
+  background-position: center;
+}
+
+#custom-notifications.enabled {
+  background-image: url("icons/notification-inactive-symbolic.svg");
+}
+
+#custom-notifications.paused {
+  background-image: url("icons/notification-disabled-symbolic.svg");
+}
+
+#custom-power {
+  min-width: 20px;
+  padding: 0;
+  background-image: url("icons/awesome_icon_white.png");
+  background-position: center;
+}
+
+#custom-minimized.occupied {
+  min-width: 18px;
+  padding-left: 21px;
+  background-image: url("icons/minimize_focus.png");
+  background-size: 16px 16px;
+}
+
 #battery.warning {
   color: #f0c674;
 }
@@ -50,13 +110,13 @@ window#waybar {
 #taskbar button {
   padding: 0 8px;
   color: #aaaaaa;
-  background: transparent;
+  background-color: transparent;
 }
 
 #taskbar button.active,
 #taskbar button:hover {
   color: #ffffff;
-  background: #1c2022;
+  background-color: #1c2022;
 }
 
 tooltip {

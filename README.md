@@ -54,6 +54,9 @@ The XF86 brightness, volume, mute, and power keys retain their previous
 actions. The old multi-tag chords are intentionally not defined because
 Hyprland windows belong to one normal workspace.
 
+The Waybar uses the original Awesome theme icons. Click the clock to open the
+current month with ISO week numbers; hover it for Waybar's built-in calendar.
+
 ## Displays and applications
 
 The ASUS MG28U is placed above the laptop panel. Every display uses its highest

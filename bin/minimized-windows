@@ -47,7 +47,7 @@ case "${1:-}" in
         if (( count == 0 )); then
             jq -cn '{text:"", tooltip:"No minimized windows", class:"empty"}'
         else
-            jq -cn --arg count "$count" '{text:(" " + $count), tooltip:($count + " minimized window(s); click to restore"), class:"occupied"}'
+            jq -cn --arg count "$count" '{text:$count, tooltip:($count + " minimized window(s); click to restore"), class:"occupied"}'
         fi
         ;;
     *)
