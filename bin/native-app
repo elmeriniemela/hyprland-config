@@ -31,10 +31,6 @@ case "$app" in
         pattern='^(thunderbird|org.mozilla.Thunderbird)$'
         launch=(env MOZ_ENABLE_WAYLAND=1 GDK_BACKEND=wayland thunderbird)
         ;;
-    whatsapp)
-        pattern='^(whatsapp)$|WhatsApp'
-        launch=(brave --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --class=whatsapp --app=https://web.whatsapp.com/)
-        ;;
     signal)
         pattern='^(signal|Signal)$'
         launch=(signal-desktop --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland)

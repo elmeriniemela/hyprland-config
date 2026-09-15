@@ -28,7 +28,7 @@ hl.window_rule({
 
 hl.window_rule({
     name = "communications-workspace",
-    match = { class = "^(signal|Signal|Slack|slack|zoom|Zoom|thunderbird|org.mozilla.Thunderbird|whatsapp)$" },
+    match = { class = "^(signal|Signal|Slack|slack|zoom|Zoom|thunderbird|org.mozilla.Thunderbird)$" },
     workspace = "9 silent",
 })
 

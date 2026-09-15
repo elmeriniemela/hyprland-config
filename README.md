@@ -33,7 +33,8 @@ ln -s "$HOME/.config/hypr/bin/native-app" "$HOME/.local/bin/hypr-native-app"
 | Super+F1 | Searchable keybinding help |
 | Super+Return | Focus or open terminal |
 | Alt+Return | Open a new terminal |
-| Super+Q/E/T/W/A/S/Z/C | Browser, files, mail, WhatsApp, Signal, Slack, Zoom, code |
+| Super+Q/E/T/A/S/Z/C | Browser, files, mail, Signal, Slack, Zoom, code |
+| Super+W | Close active window |
 | Super+Escape | Click a window to kill it |
 | Super+U | Focus urgent or previous window |
 | Ctrl+Super+R | Reload and validate configuration |
@@ -63,7 +64,7 @@ to the laptop.
 
 Applications are forced to native Wayland. Create `use-web-slack` or
 `use-web-zoom` in this directory to use the corresponding Brave web client.
-WhatsApp always uses Brave. Signal has no configured web fallback.
+Signal has no configured web fallback.
 
 ## Validation
 

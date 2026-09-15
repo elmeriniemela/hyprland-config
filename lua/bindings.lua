@@ -24,7 +24,7 @@ bind("ALT + Return", helper("native-app", "--new terminal"), "Open a new termina
 bind("SUPER + q", helper("native-app", "browser"), "Focus or open browser")
 bind("SUPER + e", helper("native-app", "files"), "Focus or open file manager")
 bind("SUPER + t", helper("native-app", "mail"), "Focus or open mail")
-bind("SUPER + w", helper("native-app", "whatsapp"), "Focus or open WhatsApp")
+bind("SUPER + w", hl.dsp.window.close(), "Close active window")
 bind("SUPER + a", helper("native-app", "signal"), "Focus or open Signal")
 bind("SUPER + s", helper("native-app", "slack"), "Focus or open Slack")
 bind("SUPER + z", helper("native-app", "zoom"), "Focus or open Zoom")
