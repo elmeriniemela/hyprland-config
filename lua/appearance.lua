@@ -8,7 +8,6 @@ hl.config({
             inactive_border = "rgb(1c2022)",
         },
         resize_on_border = true,
-        allow_tearing = false,
         layout = "master",
     },
     decoration = {

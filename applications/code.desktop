@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Visual Studio Code
-Comment=Code Editing. Redefined.
-Exec=hypr-native-app --new code %F
-Icon=visual-studio-code
-Type=Application
-Terminal=false
-Categories=Development;IDE;
-MimeType=text/plain;inode/directory;

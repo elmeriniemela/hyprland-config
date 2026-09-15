@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Zoom (Web)
+Comment=Open Zoom as a Brave web application
+Exec=brave --class=zoom --app=https://app.zoom.us/wc/
+Terminal=false
+Type=Application
+Icon=Zoom
+Categories=Network;VideoConference;
+StartupWMClass=zoom

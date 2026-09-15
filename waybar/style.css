@@ -1,7 +1,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: Inter, "Droid Sans", sans-serif;
+  font-family: Inter, "Droid Sans", "Font Awesome 7 Free Solid", sans-serif;
   font-size: 10px;
   min-height: 0;
 }
@@ -13,12 +13,9 @@ window#waybar {
 
 #workspaces button {
   min-width: 22px;
-  padding: 0 3px 0 8px;
+  padding: 0 6px;
   color: #aaaaaa;
   background-color: transparent;
-  background-image: url("icons/square_b.png");
-  background-repeat: no-repeat;
-  background-position: left center;
 }
 
 #workspaces button.active,
@@ -28,7 +25,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-  background-image: url("icons/square_a.png");
+  color: #ffffff;
 }
 
 #workspaces button.urgent {
@@ -40,62 +37,18 @@ window#waybar {
 #wireplumber,
 #custom-notifications,
 #tray,
-#custom-power,
-#custom-minimized {
+#custom-power {
   padding: 0 6px;
-}
-
-#clock,
-#battery,
-#wireplumber,
-#custom-notifications,
-#custom-power,
-#custom-minimized.occupied {
-  background-repeat: no-repeat;
-  background-position: left center;
-}
-
-#clock {
-  padding-left: 24px;
-  background-image: url("icons/clock.png");
-}
-
-#battery {
-  padding-left: 24px;
-  background-image: url("icons/battery-full-charged-symbolic.svg");
-}
-
-#wireplumber {
-  padding-left: 24px;
-  background-image: url("icons/audio-volume-medium-symbolic.svg");
 }
 
 #custom-notifications {
   min-width: 22px;
-  padding: 0;
-  background-position: center;
-}
-
-#custom-notifications.enabled {
-  background-image: url("icons/notification-inactive-symbolic.svg");
-}
-
-#custom-notifications.paused {
-  background-image: url("icons/notification-disabled-symbolic.svg");
+  padding: 0 4px;
 }
 
 #custom-power {
   min-width: 20px;
-  padding: 0;
-  background-image: url("icons/awesome_icon_white.png");
-  background-position: center;
-}
-
-#custom-minimized.occupied {
-  min-width: 18px;
-  padding-left: 21px;
-  background-image: url("icons/minimize_focus.png");
-  background-size: 16px 16px;
+  padding: 0 4px;
 }
 
 #battery.warning {
@@ -117,6 +70,10 @@ window#waybar {
 #taskbar button:hover {
   color: #ffffff;
   background-color: #1c2022;
+}
+
+#taskbar button.minimized {
+  color: #666666;
 }
 
 tooltip {

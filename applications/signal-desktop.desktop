@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Signal
-Exec=hypr-native-app --new signal %U
-Terminal=false
-Type=Application
-Icon=signal-desktop
-Categories=Network;InstantMessaging;

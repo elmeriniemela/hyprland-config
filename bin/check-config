@@ -2,12 +2,12 @@
 set -euo pipefail
 
 config_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
-required=(bash cal jq lua rofi wpctl xdg-user-dir)
+required=(bash cal jq luac rofi wpctl xdg-user-dir)
 session_required=(
     Hyprland hyprctl waybar hyprlock hypridle hyprpaper grim slurp satty
     wl-copy wl-paste cliphist brightnessctl dunstctl notify-send alacritty brave
     thunar thunderbird signal-desktop slack zoom code nm-applet blueman-applet
-    pavucontrol xfce4-taskmanager
+    pavucontrol xfce4-taskmanager hyprshutdown
 )
 
 missing=()
@@ -27,6 +27,20 @@ jq empty "$config_dir/waybar/config.jsonc"
 if command -v desktop-file-validate >/dev/null; then
     desktop-file-validate "$config_dir"/applications/*.desktop
 fi
+
+waybar_config=$(readlink -f "$HOME/.config/waybar" 2>/dev/null || true)
+if [[ $waybar_config != "$config_dir/waybar" ]]; then
+    echo "Waybar configuration is not linked to $config_dir/waybar" >&2
+    exit 1
+fi
+
+for service in waybar hyprpaper hypridle hyprpolkitagent; do
+    service_link="$HOME/.config/systemd/user/graphical-session.target.wants/$service.service"
+    if [[ ! -L $service_link ]]; then
+        echo "$service.service is not enabled for graphical-session.target" >&2
+        exit 1
+    fi
+done
 
 if [[ -n ${HYPRLAND_INSTANCE_SIGNATURE:-} ]]; then
     errors=$(hyprctl configerrors)

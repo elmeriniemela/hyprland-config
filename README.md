@@ -2,7 +2,8 @@
 
 Native-Wayland-only Hyprland configuration for this laptop. It preserves the
 launcher, workspace, application, two-bar, and monitor workflows from the old
-Awesome setup while using global workspaces 1–9.
+Awesome setup while using global workspaces 1–9. Xorg-specific launch wrappers,
+desktop-entry overrides, and monitor scripts have been removed.
 
 Requires Hyprland 0.56 or newer. Hyprland's XWayland server is disabled.
 
@@ -15,14 +16,16 @@ Clone this repository to the standard Hyprland configuration location,
 bootstrap-linux laptop
 ```
 
-The installer accepts the repository directly at `~/.config/hypr` and refuses
-to replace an unrelated configuration, desktop entry, or launcher. Resolve
-such conflicts explicitly, then rerun it.
+The installer accepts the repository directly at `~/.config/hypr`, links the
+Waybar configuration, installs the two explicit web-app launchers, and enables
+the packaged Waybar, hyprpaper, hypridle, and hyprpolkitagent user services. It
+refuses to replace unrelated configurations or desktop entries.
 
-For a one-off user-only setup, link its native launcher directly:
+For a one-off user-only setup, link Waybar and enable the same services:
 
 ```bash
-ln -s "$HOME/.config/hypr/bin/native-app" "$HOME/.local/bin/hypr-native-app"
+ln -s "$HOME/.config/hypr/waybar" "$HOME/.config/waybar"
+systemctl --user enable waybar hyprpaper hypridle hyprpolkitagent
 ```
 
 ## Keybindings
@@ -38,13 +41,11 @@ ln -s "$HOME/.config/hypr/bin/native-app" "$HOME/.local/bin/hypr-native-app"
 | Super+Escape | Click a window to kill it |
 | Super+U | Focus urgent or previous window |
 | Ctrl+Super+R | Reload and validate configuration |
-| Ctrl+Super+W | Reapply monitor layout |
 | Ctrl+Shift+Escape | Task manager |
 | Alt+Tab | Window selector |
 | Print | Region screenshot and annotation |
 | Super+V | Clipboard history |
 | Super+F | Toggle floating |
-| Super+M | Minimize to the hidden workspace |
 | Super+Shift+D | Close window |
 | Super+1…9 | Select global workspace |
 | Super+Shift+1…9 | Move window and follow it |
@@ -54,20 +55,21 @@ The XF86 brightness, volume, mute, and power keys retain their previous
 actions. The old multi-tag chords are intentionally not defined because
 Hyprland windows belong to one normal workspace.
 
-The Waybar uses the original Awesome theme icons. Click the clock to open the
-current month with ISO week numbers; hover it for Waybar's built-in calendar.
+Waybar uses Font Awesome glyphs instead of copied bitmap assets. Click the clock
+to open the current month with ISO week numbers; hover it for Waybar's built-in
+calendar. Clicking a taskbar item uses Waybar's native minimize-or-raise action.
 
 ## Displays and applications
 
-An external display is placed above and centered with the laptop panel. Run
-`bootstrap-linux monitor` after hotplugging a display to reapply the layout.
-Workspace 1 and the browser live on the laptop. Workspaces 2–9 are not tied to
-a particular external display, with VS Code on 2 and communication applications
-on 9.
+An external display is placed automatically above and centered with the laptop
+panel. Hyprland recomputes the layout on hotplug. Workspace 1 and the browser
+live on the laptop. Other workspaces are created on demand and are not pinned
+to an output; Waybar still displays selectors for workspaces 1–9. VS Code opens
+on 2 and communication applications on 9.
 
-Applications are forced to native Wayland. Create `use-web-slack` or
-`use-web-zoom` in this directory to use the corresponding Brave web client.
-Signal has no configured web fallback.
+Applications use their native Wayland defaults, with XWayland disabled as a
+backstop. `Slack (Web)` and `Zoom (Web)` are separate launcher entries; the
+packaged native launchers remain intact, including their MIME types and actions.
 
 ## Validation
 
@@ -76,9 +78,9 @@ Run these inside the Hyprland session:
 ```bash
 ~/.config/hypr/bin/check-config
 hyprctl configerrors
-bootstrap-linux monitor
 hyprctl clients -j | jq '[.[] | select(.xwayland)]'
 pgrep -a Xwayland
+systemctl --user status waybar hyprpaper hypridle hyprpolkitagent
 systemctl --user status xdg-desktop-portal-hyprland
 ```
 

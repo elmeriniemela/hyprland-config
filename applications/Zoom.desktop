@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Zoom
-Exec=hypr-native-app --new zoom %U
-Terminal=false
-Type=Application
-Icon=Zoom
-Categories=Network;

@@ -12,11 +12,7 @@ case "$choice" in
         pidof hyprlock >/dev/null || hyprlock --config "$HOME/.config/hypr/hyprlock.conf"
         ;;
     Logout)
-        if command -v hyprshutdown >/dev/null; then
-            hyprshutdown
-        else
-            hyprctl dispatch 'hl.dsp.exit()'
-        fi
+        hyprshutdown
         ;;
     Suspend)
         loginctl lock-session

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 if [[ $(dunstctl is-paused 2>/dev/null || printf false) == true ]]; then
-    jq -cn '{text:"", tooltip:"Notifications paused", class:"paused"}'
+    jq -cn '{text:"", tooltip:"Notifications paused", class:"paused"}'
 else
-    jq -cn '{text:"", tooltip:"Notifications enabled", class:"enabled"}'
+    jq -cn '{text:"", tooltip:"Notifications enabled", class:"enabled"}'
 fi

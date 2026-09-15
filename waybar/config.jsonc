@@ -9,10 +9,14 @@
     "modules-center": ["clock"],
     "modules-right": ["battery", "wireplumber", "custom/notifications", "tray"],
     "hyprland/workspaces": {
-      "format": "{name}"
+      "format": "{name}",
+      "all-outputs": true,
+      "persistent-workspaces": {
+        "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      }
     },
     "clock": {
-      "format": "{:%H:%M}",
+      "format": " {:%H:%M}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
       "on-click": "$HOME/.config/hypr/bin/calendar-popup",
       "calendar": {
@@ -22,21 +26,23 @@
       }
     },
     "battery": {
-      "format": "{capacity}%",
-      "format-charging": "{capacity}% plug",
-      "format-plugged": "{capacity}% plug",
+      "format": "{icon} {capacity}%",
+      "format-charging": " {capacity}%",
+      "format-plugged": " {capacity}%",
+      "format-icons": ["", "", "", "", ""],
       "states": { "warning": 20, "critical": 10 }
     },
     "wireplumber": {
-      "format": "{volume}%",
-      "format-muted": "{volume}%M",
+      "format": "{icon} {volume}%",
+      "format-muted": " muted",
+      "format-icons": ["", "", ""],
       "on-click": "pavucontrol",
       "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     },
     "custom/notifications": {
       "exec": "$HOME/.config/hypr/bin/notification-status",
       "return-type": "json",
-      "interval": 2,
+      "interval": "once",
       "on-click": "dunstctl set-paused toggle"
     },
     "tray": {
@@ -52,9 +58,9 @@
     "spacing": 4,
     "modules-left": ["custom/power"],
     "modules-center": ["wlr/taskbar"],
-    "modules-right": ["custom/minimized"],
+    "modules-right": [],
     "custom/power": {
-      "format": "",
+      "format": "",
       "tooltip": true,
       "tooltip-format": "Session menu",
       "on-click": "$HOME/.config/hypr/bin/power-menu"
@@ -64,14 +70,8 @@
       "icon-size": 14,
       "all-outputs": false,
       "active-first": true,
-      "on-click": "activate",
+      "on-click": "minimize-raise",
       "on-click-middle": "close"
-    },
-    "custom/minimized": {
-      "exec": "$HOME/.config/hypr/bin/minimized-windows status",
-      "return-type": "json",
-      "interval": 2,
-      "on-click": "$HOME/.config/hypr/bin/minimized-windows restore"
     }
   }
 ]
