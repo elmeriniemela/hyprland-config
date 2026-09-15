@@ -61,9 +61,9 @@ current month with ISO week numbers; hover it for Waybar's built-in calendar.
 
 An external display is placed above and centered with the laptop panel. Run
 `bootstrap-linux monitor` after hotplugging a display to reapply the layout.
-Workspace 1 and the browser live on the laptop; with the ASUS MG28U connected,
-workspaces 2–9 use it, with VS Code on 2 and communication applications on 9.
-With the ASUS display absent, Hyprland moves its workspaces to the laptop.
+Workspace 1 and the browser live on the laptop. Workspaces 2–9 are not tied to
+a particular external display, with VS Code on 2 and communication applications
+on 9.
 
 Applications are forced to native Wayland. Create `use-web-slack` or
 `use-web-zoom` in this directory to use the corresponding Brave web client.
