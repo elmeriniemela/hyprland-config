@@ -38,7 +38,7 @@ ln -s "$HOME/.config/hypr/bin/native-app" "$HOME/.local/bin/hypr-native-app"
 | Super+Escape | Click a window to kill it |
 | Super+U | Focus urgent or previous window |
 | Ctrl+Super+R | Reload and validate configuration |
-| Ctrl+Super+W | Reapply and validate monitor layout |
+| Ctrl+Super+W | Reapply monitor layout |
 | Ctrl+Shift+Escape | Task manager |
 | Alt+Tab | Window selector |
 | Print | Region screenshot and annotation |
@@ -59,11 +59,11 @@ current month with ISO week numbers; hover it for Waybar's built-in calendar.
 
 ## Displays and applications
 
-The ASUS MG28U is placed above the laptop panel. Every display uses its highest
-advertised resolution. Workspace 1 and the browser live on the laptop;
-workspaces 2–9 use the external display, with VS Code on 2 and communication
-applications on 9. With the ASUS display absent, Hyprland moves its workspaces
-to the laptop.
+An external display is placed above and centered with the laptop panel. Run
+`bootstrap-linux monitor` after hotplugging a display to reapply the layout.
+Workspace 1 and the browser live on the laptop; with the ASUS MG28U connected,
+workspaces 2–9 use it, with VS Code on 2 and communication applications on 9.
+With the ASUS display absent, Hyprland moves its workspaces to the laptop.
 
 Applications are forced to native Wayland. Create `use-web-slack` or
 `use-web-zoom` in this directory to use the corresponding Brave web client.
