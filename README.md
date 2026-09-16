@@ -39,7 +39,7 @@ deployed system files, package dependencies, and service enablement.
 | Super+Escape | Click a window to kill it |
 | Super+U | Focus urgent or previous window |
 | Ctrl+Super+R | Reload and validate configuration |
-| Ctrl+Shift+Escape | Task manager |
+| Ctrl+Shift+Escape | Task manager (htop) |
 | Print | Region screenshot and annotation |
 | Super+V | Search clipboard history |
 | Super+F | Toggle floating |

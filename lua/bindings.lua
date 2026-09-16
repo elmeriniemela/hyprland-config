@@ -60,7 +60,7 @@ bind("SUPER + c", focus_or_launch("code"), "Focus or open VS Code")
 bind("SUPER + Escape", hl.dsp.exec_cmd("hyprctl kill"), "Select a window to kill")
 bind("SUPER + u", hl.dsp.focus({ urgent_or_last = true }), "Focus urgent or previous window")
 bind("CTRL + SUPER + r", helper("reload-config"), "Reload Hyprland")
-bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(bin .. "launch-app xfce4-taskmanager"), "Task manager")
+bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("alacritty -e htop"), "Task manager")
 bind("Print", helper("screenshot"), "Capture a screen region")
 bind("SUPER + v", hl.dsp.exec_cmd(bin .. "clipboard-history"), "Clipboard history")
 
