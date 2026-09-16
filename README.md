@@ -1,9 +1,8 @@
 # Hyprland configuration
 
-Native-Wayland-only Hyprland configuration for this laptop. It preserves the
-launcher, workspace, application, two-bar, and monitor workflows from the old
-Awesome setup while using global workspaces 1–9. Xorg-specific launch wrappers,
-desktop-entry overrides, and monitor scripts have been removed.
+Native-Wayland-only Hyprland configuration for this laptop, using global
+workspaces 1–9 and Hyprlauncher for desktop applications. Xorg-specific launch
+wrappers, desktop-entry overrides, and monitor scripts have been removed.
 
 Requires Hyprland 0.56 or newer. Hyprland's XWayland server is disabled.
 
@@ -17,10 +16,10 @@ bootstrap-linux laptop
 ```
 
 The installer accepts the repository directly at `~/.config/hypr`, configures
-SDDM to launch the UWSM-managed Hyprland session, links the Waybar and clipboard
-service configurations and the Rofi configuration, installs the two explicit web-app launchers, and
-enables the Waybar, hyprpaper, hypridle, hyprpolkitagent, and clipboard user
-services. It refuses to replace unrelated configurations or desktop entries.
+SDDM to launch the UWSM-managed Hyprland session, links the Waybar configuration,
+installs the two explicit web-app launchers, and enables the Waybar, hyprpaper,
+hypridle, hyprpolkitagent, and cliphist user services. It refuses to replace
+unrelated configurations or desktop entries.
 No Hyprland-session configuration outside these two repositories needs to be
 maintained by hand; rerunning `bootstrap-linux laptop` recreates all links,
 deployed system files, package dependencies, and service enablement.
@@ -30,7 +29,6 @@ deployed system files, package dependencies, and service enablement.
 | Binding | Action |
 | --- | --- |
 | Super+Space / Super+R | Application launcher |
-| Super+F1 | Searchable keybinding help |
 | Super+Return | Focus or open terminal |
 | Alt+Return | Open a new terminal |
 | Super+Q/E/T/A/S/Z/C | Browser, files, mail, Signal, Slack, Zoom, code |
@@ -39,22 +37,22 @@ deployed system files, package dependencies, and service enablement.
 | Super+U | Focus urgent or previous window |
 | Ctrl+Super+R | Reload and validate configuration |
 | Ctrl+Shift+Escape | Task manager |
-| Alt+Tab | Window selector |
 | Print | Region screenshot and annotation |
-| Super+V | Clipboard history |
+| Super+V | Search clipboard history |
 | Super+F | Toggle floating |
 | Super+Shift+D | Close window |
 | Super+1…9 | Select global workspace |
 | Super+Shift+1…9 | Move window and follow it |
 | Super+left/right mouse | Move/resize window |
 
-The XF86 brightness, volume, mute, and power keys retain their previous
-actions. The old multi-tag chords are intentionally not defined because
-Hyprland windows belong to one normal workspace.
+The XF86 brightness, volume, and mute keys retain their previous actions. The
+power keys perform a graceful logout through hyprshutdown. The old multi-tag
+chords are intentionally not defined because Hyprland windows belong to one
+normal workspace.
 
-Waybar uses Font Awesome glyphs instead of copied bitmap assets. Click the clock
-to open the current month with ISO week numbers; hover it for Waybar's built-in
-calendar. Clicking a taskbar item uses Waybar's native minimize-or-raise action.
+Waybar uses Font Awesome glyphs instead of copied bitmap assets. Hover the clock
+for Waybar's built-in calendar. The power icon performs a graceful logout, and
+clicking a taskbar item uses Waybar's native minimize-or-raise action.
 
 ## Displays and applications
 
@@ -77,14 +75,15 @@ Run these inside the Hyprland session:
 hyprctl configerrors
 hyprctl clients -j | jq '[.[] | select(.xwayland)]'
 pgrep -a Xwayland
-systemctl --user status waybar hyprpaper hypridle hyprpolkitagent clipboard-watch
+systemctl --user status waybar hyprpaper hypridle hyprpolkitagent
+systemctl --user status cliphist
 systemctl --user status xdg-desktop-portal-hyprland
 ```
 
 The first command and XWayland checks should produce no output or an empty
 array. Test screen sharing, file selection, lock/resume, monitor hotplug,
-clipboard images and text, screenshots, and every bound daily application
-before removing the previous desktop packages.
+screenshots, Hyprlauncher, and every bound daily application after a fresh
+login.
 
 ## TTY recovery
 

@@ -31,9 +31,3 @@ hl.window_rule({
     match = { class = "^(signal|Signal|Slack|slack|zoom|Zoom|thunderbird|org.mozilla.Thunderbird)$" },
     workspace = "9 silent",
 })
-
-hl.layer_rule({
-    name = "rofi-no-animation",
-    match = { namespace = "^rofi$" },
-    no_anim = true,
-})

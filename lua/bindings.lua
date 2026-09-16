@@ -1,11 +1,8 @@
 local home = os.getenv("HOME")
 local bin = home .. "/.config/hypr/bin/"
 
-local function helper(name, arguments)
+local function helper(name)
     local command = string.format("%q", bin .. name)
-    if arguments then
-        command = command .. " " .. arguments
-    end
     return hl.dsp.exec_cmd("uwsm app -- " .. command)
 end
 
@@ -42,9 +39,8 @@ local function focus_or_launch(name)
     end
 end
 
-bind("SUPER + space", helper("launcher"), "Application launcher")
-bind("SUPER + r", helper("launcher"), "Application launcher")
-bind("SUPER + F1", helper("keybind-help"), "Show keybindings")
+bind("SUPER + space", hl.dsp.exec_cmd("hyprlauncher"), "Application launcher")
+bind("SUPER + r", hl.dsp.exec_cmd("hyprlauncher"), "Application launcher")
 
 bind("SUPER + Return", focus_or_launch("terminal"), "Focus or open terminal")
 bind("ALT + Return", hl.dsp.exec_cmd("uwsm app -- alacritty"), "Open a new terminal")
@@ -61,12 +57,11 @@ bind("SUPER + Escape", hl.dsp.exec_cmd("hyprctl kill"), "Select a window to kill
 bind("SUPER + u", hl.dsp.focus({ urgent_or_last = true }), "Focus urgent or previous window")
 bind("CTRL + SUPER + r", helper("reload-config"), "Reload Hyprland")
 bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("uwsm app -- xfce4-taskmanager"), "Task manager")
-bind("ALT + Tab", helper("window-switcher"), "Window switcher")
 bind("Print", helper("screenshot"), "Capture a screen region")
-bind("SUPER + v", helper("clipboard-menu"), "Clipboard history")
+bind("SUPER + v", hl.dsp.exec_cmd(bin .. "clipboard-history"), "Clipboard history")
 
-bind("XF86PowerOff", helper("power-menu"), "Session menu")
-bind("XF86PowerDown", helper("power-menu"), "Session menu")
+bind("XF86PowerOff", hl.dsp.exec_cmd("hyprshutdown"), "Log out")
+bind("XF86PowerDown", hl.dsp.exec_cmd("hyprshutdown"), "Log out")
 bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 1%+"), "Increase brightness", { locked = true, repeating = true })
 bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 1%-"), "Decrease brightness", { locked = true, repeating = true })
 bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 1%+"), "Increase volume", { locked = true, repeating = true })

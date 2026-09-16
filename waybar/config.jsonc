@@ -18,7 +18,6 @@
     "clock": {
       "format": " {:%H:%M}",
       "tooltip-format": "<tt><small>{calendar}</small></tt>",
-      "on-click": "$HOME/.config/hypr/bin/calendar-popup",
       "calendar": {
         "mode": "month",
         "weeks-pos": "left",
@@ -62,8 +61,8 @@
     "custom/power": {
       "format": "",
       "tooltip": true,
-      "tooltip-format": "Session menu",
-      "on-click": "$HOME/.config/hypr/bin/power-menu"
+      "tooltip-format": "Log out",
+      "on-click": "hyprshutdown"
     },
     "wlr/taskbar": {
       "format": "{icon} {title}",

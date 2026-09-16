@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cliphist list | hyprlauncher --dmenu | cliphist decode | wl-copy
