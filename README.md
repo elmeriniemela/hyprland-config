@@ -50,9 +50,10 @@ power keys perform a graceful logout through hyprshutdown. The old multi-tag
 chords are intentionally not defined because Hyprland windows belong to one
 normal workspace.
 
-Waybar uses Font Awesome glyphs instead of copied bitmap assets. Hover the clock
-for Waybar's built-in calendar. The power icon performs a graceful logout, and
-clicking a taskbar item uses Waybar's native minimize-or-raise action.
+Waybar uses compact text labels for status modules instead of fragile icon-font
+glyphs. Hover the clock for Waybar's built-in calendar. The POWER button opens
+a dialog for locking, logging out, suspending, rebooting, or shutting down.
+Clicking a taskbar item uses Waybar's native minimize-or-raise action.
 
 ## Displays and applications
 

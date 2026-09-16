@@ -1,0 +1,53 @@
+* {
+  background-image: none;
+  box-shadow: none;
+  font-family: "Inter Display", Inter, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+window {
+  background-color: rgba(15, 17, 21, 0.88);
+}
+
+button {
+  margin: 0;
+  padding: 170px 12px 20px;
+  color: #b8c0cc;
+  background-color: #181b21;
+  border: 1px solid #343a46;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+  background-position: center 38%;
+  background-size: 72px;
+  text-shadow: none;
+}
+
+button:focus,
+button:active,
+button:hover {
+  color: #e6e9ef;
+  background-color: #242a33;
+  border-color: #8aadf4;
+  outline-style: none;
+}
+
+#lock {
+  background-image: url("/usr/share/wlogout/assets/lock.svg");
+}
+
+#logout {
+  background-image: url("/usr/share/wlogout/assets/logout.svg");
+}
+
+#suspend {
+  background-image: url("/usr/share/wlogout/assets/suspend.svg");
+}
+
+#reboot {
+  background-image: url("/usr/share/wlogout/assets/reboot.svg");
+}
+
+#shutdown {
+  background-image: url("/usr/share/wlogout/assets/shutdown.svg");
+}

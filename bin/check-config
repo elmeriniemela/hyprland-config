@@ -7,7 +7,7 @@ session_required=(
     Hyprland hyprctl hyprlauncher waybar hyprlock hypridle hyprpaper grim slurp satty
     wl-copy wl-paste cliphist brightnessctl dunstctl notify-send alacritty brave
     thunar thunderbird signal-desktop slack zoom code nm-applet blueman-applet
-    pavucontrol xfce4-taskmanager hyprshutdown
+    pavucontrol xfce4-taskmanager hyprshutdown wlogout
 )
 
 missing=()
