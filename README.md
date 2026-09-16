@@ -51,9 +51,11 @@ chords are intentionally not defined because Hyprland windows belong to one
 normal workspace.
 
 Waybar uses compact text labels for status modules instead of fragile icon-font
-glyphs. Hover the clock for Waybar's built-in calendar. The POWER button opens
-a dialog for locking, logging out, suspending, rebooting, or shutting down.
-Clicking a taskbar item uses Waybar's native minimize-or-raise action.
+glyphs. Hover the clock for Waybar's built-in calendar and scroll over the clock
+to change months. The calendar uses Monday-first ISO weeks with week numbers on
+the left. The POWER button opens a dialog for locking, logging out, suspending,
+rebooting, or shutting down. Clicking a taskbar item uses Waybar's native
+minimize-or-raise action.
 
 ## Displays and applications
 

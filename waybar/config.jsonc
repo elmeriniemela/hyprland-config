@@ -21,7 +21,12 @@
       "calendar": {
         "mode": "month",
         "weeks-pos": "left",
-        "on-scroll": 1
+        "on-scroll": 1,
+        "iso8601": true
+      },
+      "actions": {
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
       }
     },
     "battery": {
