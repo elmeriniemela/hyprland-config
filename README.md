@@ -3,6 +3,9 @@
 Native-Wayland-only Hyprland configuration for this laptop, using global
 workspaces 1–9 and Hyprlauncher for desktop applications. Xorg-specific launch
 wrappers, desktop-entry overrides, and monitor scripts have been removed.
+The Waybar workspace module uses the `waybar-git` build because the stable
+package still emits legacy Hyprland dispatcher syntax incompatible with Lua
+configuration.
 
 Requires Hyprland 0.56 or newer. Hyprland's XWayland server is disabled.
 
@@ -51,7 +54,9 @@ chords are intentionally not defined because Hyprland windows belong to one
 normal workspace.
 
 Waybar uses compact text labels for status modules instead of fragile icon-font
-glyphs. Hover the clock for Waybar's built-in calendar and scroll over the clock
+glyphs. Click workspace 1–9 to switch to that workspace on the clicked monitor,
+including when it is empty. Hover the clock for Waybar's built-in calendar and
+scroll over the clock
 to change months. The calendar uses Monday-first ISO weeks with week numbers on
 the left. The POWER button opens a dialog for locking, logging out, suspending,
 rebooting, or shutting down. Clicking a taskbar item uses Waybar's native
