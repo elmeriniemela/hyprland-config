@@ -2,8 +2,9 @@ local home = os.getenv("HOME")
 local bin = home .. "/.config/hypr/bin/"
 
 local function helper(name)
+    local launcher = string.format("%q", bin .. "launch-app")
     local command = string.format("%q", bin .. name)
-    return hl.dsp.exec_cmd("uwsm app -- " .. command)
+    return hl.dsp.exec_cmd(launcher .. " " .. command)
 end
 
 local function bind(keys, dispatcher, description, flags)
@@ -26,15 +27,18 @@ local applications = {
 local function focus_or_launch(name)
     return function()
         local application = applications[name]
-        local window = hl.get_windows({ class = application.class })[1]
+        local window = hl.get_window("class:" .. application.class)
+        if not window then
+            window = hl.get_window("initialclass:" .. application.class)
+        end
         if not window and application.title then
-            window = hl.get_windows({ title = application.title })[1]
+            window = hl.get_window("title:" .. application.title)
         end
 
         if window then
             hl.dispatch(hl.dsp.focus({ window = window }))
         else
-            hl.exec_cmd("uwsm app -- " .. application.command)
+            hl.exec_cmd(bin .. "launch-app " .. application.command)
         end
     end
 end
@@ -43,7 +47,7 @@ bind("SUPER + space", hl.dsp.exec_cmd("hyprlauncher"), "Application launcher")
 bind("SUPER + r", hl.dsp.exec_cmd("hyprlauncher"), "Application launcher")
 
 bind("SUPER + Return", focus_or_launch("terminal"), "Focus or open terminal")
-bind("ALT + Return", hl.dsp.exec_cmd("uwsm app -- alacritty"), "Open a new terminal")
+bind("ALT + Return", hl.dsp.exec_cmd(bin .. "launch-app alacritty"), "Open a new terminal")
 bind("SUPER + q", focus_or_launch("browser"), "Focus or open browser")
 bind("SUPER + e", focus_or_launch("files"), "Focus or open file manager")
 bind("SUPER + t", focus_or_launch("mail"), "Focus or open mail")
@@ -56,7 +60,7 @@ bind("SUPER + c", focus_or_launch("code"), "Focus or open VS Code")
 bind("SUPER + Escape", hl.dsp.exec_cmd("hyprctl kill"), "Select a window to kill")
 bind("SUPER + u", hl.dsp.focus({ urgent_or_last = true }), "Focus urgent or previous window")
 bind("CTRL + SUPER + r", helper("reload-config"), "Reload Hyprland")
-bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("uwsm app -- xfce4-taskmanager"), "Task manager")
+bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd(bin .. "launch-app xfce4-taskmanager"), "Task manager")
 bind("Print", helper("screenshot"), "Capture a screen region")
 bind("SUPER + v", hl.dsp.exec_cmd(bin .. "clipboard-history"), "Clipboard history")
 
