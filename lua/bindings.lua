@@ -6,7 +6,7 @@ local function helper(name, arguments)
     if arguments then
         command = command .. " " .. arguments
     end
-    return hl.dsp.exec_cmd(command)
+    return hl.dsp.exec_cmd("uwsm app -- " .. command)
 end
 
 local function bind(keys, dispatcher, description, flags)
@@ -37,7 +37,7 @@ local function focus_or_launch(name)
         if window then
             hl.dispatch(hl.dsp.focus({ window = window }))
         else
-            hl.exec_cmd(application.command)
+            hl.exec_cmd("uwsm app -- " .. application.command)
         end
     end
 end
@@ -47,7 +47,7 @@ bind("SUPER + r", helper("launcher"), "Application launcher")
 bind("SUPER + F1", helper("keybind-help"), "Show keybindings")
 
 bind("SUPER + Return", focus_or_launch("terminal"), "Focus or open terminal")
-bind("ALT + Return", hl.dsp.exec_cmd("alacritty"), "Open a new terminal")
+bind("ALT + Return", hl.dsp.exec_cmd("uwsm app -- alacritty"), "Open a new terminal")
 bind("SUPER + q", focus_or_launch("browser"), "Focus or open browser")
 bind("SUPER + e", focus_or_launch("files"), "Focus or open file manager")
 bind("SUPER + t", focus_or_launch("mail"), "Focus or open mail")
@@ -60,7 +60,7 @@ bind("SUPER + c", focus_or_launch("code"), "Focus or open VS Code")
 bind("SUPER + Escape", hl.dsp.exec_cmd("hyprctl kill"), "Select a window to kill")
 bind("SUPER + u", hl.dsp.focus({ urgent_or_last = true }), "Focus urgent or previous window")
 bind("CTRL + SUPER + r", helper("reload-config"), "Reload Hyprland")
-bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("xfce4-taskmanager"), "Task manager")
+bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("uwsm app -- xfce4-taskmanager"), "Task manager")
 bind("ALT + Tab", helper("window-switcher"), "Window switcher")
 bind("Print", helper("screenshot"), "Capture a screen region")
 bind("SUPER + v", helper("clipboard-menu"), "Clipboard history")

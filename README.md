@@ -16,17 +16,14 @@ Clone this repository to the standard Hyprland configuration location,
 bootstrap-linux laptop
 ```
 
-The installer accepts the repository directly at `~/.config/hypr`, links the
-Waybar configuration, installs the two explicit web-app launchers, and enables
-the packaged Waybar, hyprpaper, hypridle, and hyprpolkitagent user services. It
-refuses to replace unrelated configurations or desktop entries.
-
-For a one-off user-only setup, link Waybar and enable the same services:
-
-```bash
-ln -s "$HOME/.config/hypr/waybar" "$HOME/.config/waybar"
-systemctl --user enable waybar hyprpaper hypridle hyprpolkitagent
-```
+The installer accepts the repository directly at `~/.config/hypr`, configures
+SDDM to launch the UWSM-managed Hyprland session, links the Waybar and clipboard
+service configurations and the Rofi configuration, installs the two explicit web-app launchers, and
+enables the Waybar, hyprpaper, hypridle, hyprpolkitagent, and clipboard user
+services. It refuses to replace unrelated configurations or desktop entries.
+No Hyprland-session configuration outside these two repositories needs to be
+maintained by hand; rerunning `bootstrap-linux laptop` recreates all links,
+deployed system files, package dependencies, and service enablement.
 
 ## Keybindings
 
@@ -80,7 +77,7 @@ Run these inside the Hyprland session:
 hyprctl configerrors
 hyprctl clients -j | jq '[.[] | select(.xwayland)]'
 pgrep -a Xwayland
-systemctl --user status waybar hyprpaper hypridle hyprpolkitagent
+systemctl --user status waybar hyprpaper hypridle hyprpolkitagent clipboard-watch
 systemctl --user status xdg-desktop-portal-hyprland
 ```
 
@@ -102,5 +99,5 @@ To stop an autologin loop while repairing the configuration, stop SDDM from
 the TTY with `sudo systemctl stop sddm`. Start Hyprland manually with:
 
 ```bash
-dbus-run-session start-hyprland -- --config "$HOME/.config/hypr/hyprland.lua"
+uwsm start hyprland-uwsm.desktop
 ```
