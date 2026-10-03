@@ -5,7 +5,7 @@
     "position": "top",
     "height": 28,
     "spacing": 0,
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces", "custom/layout"],
     "modules-center": ["clock"],
     "modules-right": ["battery", "wireplumber", "custom/notifications", "tray"],
     "hyprland/workspaces": {
@@ -17,6 +17,13 @@
       "persistent-workspaces": {
         "*": [1, 2, 3, 4, 5, 6, 7, 8, 9]
       }
+    },
+    "custom/layout": {
+      "exec": "$HOME/.config/hypr/bin/toggle-layout",
+      "return-type": "json",
+      "interval": 2,
+      "signal": 8,
+      "on-click": "$HOME/.config/hypr/bin/toggle-layout --toggle"
     },
     "clock": {
       "format": "{:%a %d %b  %H:%M}",

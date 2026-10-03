@@ -61,6 +61,8 @@ to change months. The calendar uses Monday-first ISO weeks with week numbers on
 the left. The POWER button opens a dialog for locking, logging out, suspending,
 rebooting, or shutting down. Clicking a taskbar item uses Waybar's native
 minimize-or-raise action.
+The TILE/MAX button beside the workspaces toggles the current workspace between
+its tiling layout and Monocle.
 
 ## Displays and applications
 

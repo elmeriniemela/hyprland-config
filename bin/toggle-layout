@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+workspace_json=$(hyprctl activeworkspace -j)
+workspace_id=$(jq -r '.id' <<<"$workspace_json")
+current_layout=$(jq -r '.tiledLayout' <<<"$workspace_json")
+
+if [[ ${1:-} == --toggle ]]; then
+    if [[ $current_layout == monocle ]]; then
+        target_layout=master
+    else
+        target_layout=monocle
+    fi
+
+    hyprctl eval "hl.workspace_rule({ workspace = \"$workspace_id\", layout = \"$target_layout\" })" >/dev/null
+    pkill -RTMIN+8 -x waybar 2>/dev/null || true
+    exit 0
+fi
+
+if [[ $current_layout == monocle ]]; then
+    text=MAX
+    tooltip="Monocle/max layout (click for tiling)"
+else
+    text=TILE
+    tooltip="Tiling layout: $current_layout (click for Monocle/max)"
+fi
+
+jq -cn --arg text "$text" --arg tooltip "$tooltip" --arg alt "$current_layout" \
+    '{text: $text, tooltip: $tooltip, alt: $alt}'

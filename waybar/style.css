@@ -46,6 +46,7 @@ window#waybar.bottom {
 }
 
 #clock,
+#custom-layout,
 #battery,
 #wireplumber,
 #custom-notifications,
@@ -59,6 +60,17 @@ window#waybar.bottom {
 #clock {
   color: #e6e9ef;
   font-weight: 600;
+}
+
+#custom-layout {
+  color: #a6da95;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+#custom-layout:hover {
+  color: #e6e9ef;
+  background-color: #242a33;
 }
 
 #battery:hover,
